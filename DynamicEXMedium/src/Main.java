@@ -176,14 +176,35 @@ class MediumEx
         }
         return median;
     }
+
+//    9.	Write a function that takes an array of strings and returns a new array that contains the strings in reverse order.
+    public static String[] iReverseAnArray(String[] originalString)
+    {
+        List<String> listArray = new ArrayList<>();
+        for(int i = originalString.length-1; i >= 0; i--)
+        {
+            listArray.add(originalString[i]);
+        }
+
+        String[] reversedArr = new String[listArray.size()];
+        for(int i = 0; i < reversedArr.length; i++)
+        {
+            reversedArr[i] = listArray.get(i);
+        }
+        return reversedArr;
+    }
+    public static void iPrintReversedArray()
+    {
+        String[] a = {"T", "s", "h", "e", "p", "o"};
+        for(String s: iReverseAnArray(a))
+            System.out.print(s + " ");
+    }
 }
 
 public class Main
 {
     public static void main(String[] args)
     {
-        int[] a = {2, 6, 8, 10, 4, 3, 5, 9};
-        //{2, 3, 4, 5, 6, 8, 9, 10}
-        System.out.println("The median is: " + MediumEx.iReturnMedianOfGivenArr(a));
+        MediumEx.iPrintReversedArray();
     }
 }
