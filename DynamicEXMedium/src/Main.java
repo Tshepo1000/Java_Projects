@@ -195,9 +195,27 @@ class MediumEx
     }
     public static void iPrintReversedArray()
     {
-        String[] a = {"T", "s", "h", "e", "p", "o"};
+        String[] a = {"T", "U", "B", "A", "T", "S", "I"};
         for(String s: iReverseAnArray(a))
             System.out.print(s + " ");
+    }
+
+//    10.	Write a function that takes an array of integers and returns the product of all the integers in the array.
+    public static int iReturnAProductOfAnIntArr(int[] arrayOfNum)
+    {
+        int product = 1;
+        for(int i: arrayOfNum)
+        {
+            product *= i;
+        }
+        return product;
+    }
+
+    public static void iPrintTheProduct()
+    {
+        int[] numbers = {1, 2, 3, 4, 5, 6};
+        System.out.println("The product is: " + iReturnAProductOfAnIntArr(numbers));
+
     }
 }
 
@@ -205,6 +223,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-        MediumEx.iPrintReversedArray();
+        MediumEx.iPrintTheProduct();
     }
 }
