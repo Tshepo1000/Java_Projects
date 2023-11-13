@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -52,6 +53,11 @@ class HardEx
         }
         return uniqueElementsInArray;
     }
+//    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
+//    public static String[] iSortStrings(String[] unsortedStrings)
+//    {
+//        String[] sortedArray = Arrays.sort(unsortedStrings);
+//    }
 }
 
 public class Main {
