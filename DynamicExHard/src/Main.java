@@ -53,20 +53,37 @@ class HardEx
         }
         return uniqueElementsInArray;
     }
-//    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
-//    public static String[] iSortStrings(String[] unsortedStrings)
-//    {
-//        String[] sortedArray = Arrays.sort(unsortedStrings);
-//    }
+
+    //    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
+    public static String[] iSortStrings(String[] unsortedArray)
+    {
+        char[] firstCharOfUnsortedArray = new char[unsortedArray.length];
+        String[] sortedArray = new String[unsortedArray.length];
+
+        for(int i = 0; i < unsortedArray.length; i++)
+        {
+            firstCharOfUnsortedArray[i] = unsortedArray[i].charAt(i-i) ;
+        }
+
+        Arrays.sort(firstCharOfUnsortedArray);
+        for(int i = 0; i < sortedArray.length; i++)
+        {
+            for(int j = 0; j < sortedArray.length; j++)
+            {
+                if(unsortedArray[j].charAt(j-j) == firstCharOfUnsortedArray[i])
+                {
+                    sortedArray[i] = unsortedArray[j];
+                }
+            }
+        }
+        return sortedArray;
+    }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int[] a = {1, 2, 3, 4, 5};
-        int[] b = {6, 2, 4, 1, 7};
-        for(int x: HardEx.uniqueElements(a, b))
-        {
-            System.out.print(x + " ");
-        }
+        String[] a = {"Tshepo", "Xoli", "Dutchess", "Alfred", "Ben", "Cici"};
+        for(String s: HardEx.iSortStrings(a))
+            System.out.print(s + " ");
     }
 }
