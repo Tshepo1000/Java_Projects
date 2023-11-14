@@ -58,32 +58,71 @@ class HardEx
     public static String[] iSortStrings(String[] unsortedArray)
     {
         char[] firstCharOfUnsortedArray = new char[unsortedArray.length];
-        String[] sortedArray = new String[unsortedArray.length];
+        List<String> sortedList = new ArrayList<>();
 
         for(int i = 0; i < unsortedArray.length; i++)
         {
-            firstCharOfUnsortedArray[i] = unsortedArray[i].charAt(i-i) ;
+            firstCharOfUnsortedArray[i] = unsortedArray[i].charAt(0) ;
         }
 
         Arrays.sort(firstCharOfUnsortedArray);
-        for(int i = 0; i < sortedArray.length; i++)
+
+        for(int i = 0; i < firstCharOfUnsortedArray.length; i++)
         {
-            for(int j = 0; j < sortedArray.length; j++)
+            for(int j = 0; j < unsortedArray.length; j++)
             {
-                if(unsortedArray[j].charAt(j-j) == firstCharOfUnsortedArray[i])
+                if(firstCharOfUnsortedArray[i] == unsortedArray[j].charAt(0))
+                    sortedList.add(unsortedArray[j]);
+            }
+        }
+
+        for(int i = 0; i < sortedList.size(); i++)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                if(sortedList.get(i) == sortedList.get(j))
                 {
-                    sortedArray[i] = unsortedArray[j];
+                    sortedList.remove(sortedList.get(j));
+                }
+
+                if(sortedList.get(i) == sortedList.get(j))
+                {
+                    sortedList.remove(sortedList.get(j));
                 }
             }
         }
+        String[] sortedArray = new String[sortedList.size()];
+        for(int i = 0; i < sortedArray.length; i++)
+        {
+            sortedArray[i] = sortedList.get(i);
+        }
         return sortedArray;
+    }
+
+//    4.	Write a function that takes an array of integers and a target integer as input, and returns true if there are two integers in the array that add up to the target integer, and false otherwise.
+    public static boolean addingNumbers(int[] numArray, int num)
+    {
+        boolean numInArray = false;
+        for (int i: numArray)
+        {
+            for (int j : numArray)
+                if (i + j == num)
+                    numInArray = true;
+        }
+
+        System.out.print("Are there two integers that add up to " + num + ": ");
+        return numInArray;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        String[] a = {"Tshepo", "Xoli", "Dutchess", "Alfred", "Ben", "Cici"};
+        String[] a = {"Anna", "Tshepo", "Xoli", "Dutchess", "Alfred", "Ben", "Cici", "Thabang"};
         for(String s: HardEx.iSortStrings(a))
+        {
             System.out.print(s + " ");
+        }
+//        int[] nums = {1, 2, 3, 4, 5};
+//        System.out.println(HardEx.addingNumbers(nums, 5));
     }
 }
