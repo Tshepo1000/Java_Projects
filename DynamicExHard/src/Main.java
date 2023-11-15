@@ -79,12 +79,44 @@ class HardEx
         System.out.print("Are there two integers that add up to " + num + ": ");
         return numInArray;
     }
+
+//    5.	Write a function that takes an array of strings and a character as input, and returns a new array that contains only the strings that contain the character.
+    public static String[] isCharInMyString(String[] wordList, char letter)
+    {
+        List<String> myList = new ArrayList<>();
+        for(String s: wordList)
+            for(int i = 0; i < s.length(); i++)
+                if(s.toLowerCase().charAt(i) == letter | s.toUpperCase().charAt(i) == letter)
+                    myList.add(s);
+
+        String[] resultingArray = new String[myList.size()];
+        for(int i = 0; i <myList.size(); i++)
+            resultingArray[i] = myList.get(i);
+
+        Arrays.sort(resultingArray);
+        return resultingArray;
+    }
+
+//    6.	Write a function that takes an array of integers and returns the mode (most frequently occurring integer) of the integers in the array.
+    public static int frequentInt(int[] arrayOfInt)
+    {
+        int mode = arrayOfInt[0];
+        for(int i = 0; 0 < arrayOfInt.length; i++)
+        {
+            for(int j = 0; j < i; j++)
+                if(arrayOfInt[i] == arrayOfInt[j])
+                    mode = arrayOfInt[i];
+        }
+        return mode;
+    }
 }
 
 public class Main
 {
     public static void main(String[] args)
     {
-
+        String[] names = {"Tshepo", "Xoli", "Alfred", "Dutchess", "Thabang", "Busi"};
+        for(String s: HardEx.isCharInMyString(names, 'e'))
+            System.out.print(s + " ");
     }
 }
