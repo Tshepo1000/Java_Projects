@@ -57,45 +57,11 @@ class HardEx
     //    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
     public static String[] iSortStrings(String[] unsortedArray)
     {
-        char[] firstCharOfUnsortedArray = new char[unsortedArray.length];
-        List<String> sortedList = new ArrayList<>();
+        Arrays.sort(unsortedArray);
+        String[] sortedArray = new String[unsortedArray.length];
+        sortedArray = unsortedArray;
 
-        for(int i = 0; i < unsortedArray.length; i++)
-        {
-            firstCharOfUnsortedArray[i] = unsortedArray[i].charAt(0) ;
-        }
 
-        Arrays.sort(firstCharOfUnsortedArray);
-
-        for(int i = 0; i < firstCharOfUnsortedArray.length; i++)
-        {
-            for(int j = 0; j < unsortedArray.length; j++)
-            {
-                if(firstCharOfUnsortedArray[i] == unsortedArray[j].charAt(0))
-                    sortedList.add(unsortedArray[j]);
-            }
-        }
-
-        for(int i = 0; i < sortedList.size(); i++)
-        {
-            for(int j = 0; j < i; j++)
-            {
-                if(sortedList.get(i) == sortedList.get(j))
-                {
-                    sortedList.remove(sortedList.get(j));
-                }
-
-                if(sortedList.get(i) == sortedList.get(j))
-                {
-                    sortedList.remove(sortedList.get(j));
-                }
-            }
-        }
-        String[] sortedArray = new String[sortedList.size()];
-        for(int i = 0; i < sortedArray.length; i++)
-        {
-            sortedArray[i] = sortedList.get(i);
-        }
         return sortedArray;
     }
 
@@ -115,14 +81,10 @@ class HardEx
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        String[] a = {"Anna", "Tshepo", "Xoli", "Dutchess", "Alfred", "Ben", "Cici", "Thabang"};
-        for(String s: HardEx.iSortStrings(a))
-        {
-            System.out.print(s + " ");
-        }
-//        int[] nums = {1, 2, 3, 4, 5};
-//        System.out.println(HardEx.addingNumbers(nums, 5));
+public class Main
+{
+    public static void main(String[] args)
+    {
+
     }
 }
