@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 class HardEx
 {
@@ -98,25 +95,30 @@ class HardEx
     }
 
 //    6.	Write a function that takes an array of integers and returns the mode (most frequently occurring integer) of the integers in the array.
-    public static int frequentInt(int[] arrayOfInt)
+    public static int mostFrequentNum(int[] arrayOfInt)
     {
-        int mode = arrayOfInt[0];
-        for(int i = 0; 0 < arrayOfInt.length; i++)
-        {
-            for(int j = 0; j < i; j++)
-                if(arrayOfInt[i] == arrayOfInt[j])
-                    mode = arrayOfInt[i];
-        }
-        return mode;
+    return 0;
     }
+
+//    9.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by length (shortest to longest).
+    public static String[] sortedByLength(String[] unsortedArr)
+    {
+        String[] sortedArr = unsortedArr;
+        Arrays.sort(sortedArr, new Comparator<String>() {
+            @Override
+            public int compare(String name1, String name2) {
+                return name1.length()-name2.length();
+            }
+        });
+        return sortedArr;
+    }
+
 }
 
 public class Main
 {
     public static void main(String[] args)
     {
-        String[] names = {"Tshepo", "Xoli", "Alfred", "Dutchess", "Thabang", "Busi"};
-        for(String s: HardEx.isCharInMyString(names, 'e'))
-            System.out.print(s + " ");
+
     }
 }
