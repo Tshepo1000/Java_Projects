@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +7,8 @@ class MediumEx
     //1.	Write a function that takes two arrays of integers and returns a new array that contains the elements that are common to both arrays.
     public static int[] commonElements(int[] firstArr, int[] secondArr)
     {
-        List<Integer> listWithCommonElements = new ArrayList<>();
+        int count = 0;
+
         //outer loop to iterate the first array
         for(int x: firstArr)
         {
@@ -20,17 +18,24 @@ class MediumEx
                 //condition to check if the value in the first array matches any value in the second array
                 if(x == y)
                 {
-                    //add it to our list
-                    listWithCommonElements.add(x);
+                    //increment count
+                    count++;
                 }
             }
         }
 
-        int[] arrWithCommonElements = new int[listWithCommonElements.size()];
-        for(int i = 0; i < arrWithCommonElements.length; i++)
-        {
-            arrWithCommonElements[i] = listWithCommonElements.get(i);
-        }
+        int[] arrWithCommonElements = new int[count];
+        int index = 0;
+
+        for(int i: firstArr)
+            for (int j: secondArr)
+            {
+                if(i == j)
+                {
+                    arrWithCommonElements[index] = i;
+                    index++;
+                }
+            }
 
         return arrWithCommonElements;
     }
@@ -51,9 +56,10 @@ class MediumEx
     public static double averageLength(String[] arrOfStrings)
     {
         int total = 0;
-        for (String arrOfString : arrOfStrings) {
+
+        for (String arrOfString : arrOfStrings)
             total += arrOfString.length();
-        }
+
         return (double) total /arrOfStrings.length;
     }
 
@@ -223,6 +229,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-        MediumEx.iPrintTheProduct();
+        MediumEx.printCommonArrElements();
     }
 }
