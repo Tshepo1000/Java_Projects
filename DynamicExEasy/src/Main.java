@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //1.	Write a function that takes an array of integers and returns the sum of all the integers.
 class SumOfArray
 {
-    public int sumOfnum(int[] arr)
+    int sumOfNum(int[] arr)
     {
         int sum = 0;
         for(int i: arr)
@@ -16,10 +14,10 @@ class SumOfArray
         return sum;
     }
 
-    public void additionResults(){
+    void additionResults(){
         int[] numbers = {1, 2, 3, 4, 5};
-        int sumofnumbers = sumOfnum(numbers);
-        System.out.println("Array sum: " + sumofnumbers);
+        int sumOfNumbers = sumOfNum(numbers);
+        System.out.println("Array sum: " + sumOfNumbers);
     }
 }
 
@@ -29,13 +27,10 @@ class ShortString
     public int shortestString(String[] s)
     {
         int min = s[0].length();
-        for(int i = 0; i < s.length; i++)
-        {
-            if(min > s[i].length())
-            {
-                min = s[i].length();
-            }
-        }
+        for(String word: s)
+            if(word.length() < min)
+                min = word.length();
+
         return min;
     }
     public void shortStringresults()
@@ -300,22 +295,21 @@ class Even
 {
     public int[] numberFunction(int[] numbers)
     {
-        List<Integer> even_num_list = new ArrayList<>();
+        int count = 0;
+        for(int num: numbers)
+            if(num % 2 == 0)
+                count++;
 
-        for(int i = 0; i < numbers.length; i++)
-        {
-            if(numbers[i] % 2 == 0)
+        int[] evenNumbers = new int[count];
+        int index = 0;
+        for(int num: numbers)
+            if(num % 2 == 0)
             {
-                even_num_list.add(numbers[i]);
+                evenNumbers[index] = num;
+                index++;
             }
-        }
 
-        int[] even_num_arr = new int[even_num_list.size()];
-        for(int i = 0; i < even_num_list.size(); i++)
-        {
-            even_num_arr[i] = even_num_list.get(i);
-        }
-        return even_num_arr;
+        return evenNumbers;
     }
 
     public void evenNumbersFunc()
@@ -328,12 +322,11 @@ class Even
         }
 
     }
-
 }
 public class Main
 {
     public static void main(String[] args)
     {
-        new Even().evenNumbersFunc();
+        new CombinationOfArrays().combinedArray();
     }
 }
