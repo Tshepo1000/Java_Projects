@@ -94,47 +94,56 @@ class MediumEx
     }
 
 //    5.	Write a function that takes an array of strings and returns a new array that contains only the strings that start with a vowel.
-    public static String[] myString(String[] stringsThatStartWithVowel)
+    public static String[] returnWordsThatStartWithVowel(String[] words)
     {
         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-        List<String> listToStoreStringsThatStartWithVowel = new ArrayList<>();
 
-        for(String s: stringsThatStartWithVowel)
-        {
-            for(int i = 0; i < vowels.length; i++)
-            {
-                if(s.toLowerCase().charAt(0) == vowels[i])
+        int count = 0;
+        int index = 0;
+
+        for(String word: words)
+            for(char vowel: vowels)
+                if (word.toLowerCase().charAt(0) == vowel)
+                    count++;
+
+        String[] wordsThatStartWithVowel = new String[count];
+        for(String word: words)
+            for(char vowel: vowels)
+                if(word.toLowerCase().charAt(0) == vowel)
                 {
-                    listToStoreStringsThatStartWithVowel.add(s);
+                    wordsThatStartWithVowel[index] = word;
+                    index++;
                 }
-            }
-        }
 
-        String[] stringsWithVowel = new String[listToStoreStringsThatStartWithVowel.size()];
-        for(int i = 0; i < stringsWithVowel.length; i++)
-        {
-            stringsWithVowel[i] = listToStoreStringsThatStartWithVowel.get(i);
-        }
-
-        return stringsWithVowel;
+        return wordsThatStartWithVowel;
     }
 
     public static void printArrayWithVowels()
     {
         String[] words = {"Alfred", "Tshepo", "Anna", "Eat", "Out", "In"};
         System.out.print("Array that contains strings that start with a vowel: ");
-        for(String s: myString(words))
+        for(String s: returnWordsThatStartWithVowel(words))
         {
             System.out.print(s + " ");
         }
     }
 
 //    6.	Write a function that takes an array of integers and returns a new array that contains the integers in sorted order.
-    public static int[] sortingArray(int[] arr)
+    public static int[] sortingNumbers(int[] numbers)
     {
+        for(int i = 0; i < numbers.length - 1; i++)
+            for(int j = 0 + i; j < numbers.length; j++)
+            {
+                if(numbers[i] > numbers[j])
+                {
+                    int storeNum = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = storeNum;
+                }
+            }
+        int[] sortedNumbers = numbers;
 
-        Arrays.sort(arr);
-        return arr;
+        return sortedNumbers;
     }
 
     public static void printSortedArr()
@@ -142,7 +151,7 @@ class MediumEx
         int[] numArr = {2, 54, 7, 45, 86, 3};
 
         System.out.print("Sorted Array: ");
-        for(int i: sortingArray(numArr))
+        for(int i: sortingNumbers(numArr))
         {
             System.out.print(i + " ");
         }
@@ -153,16 +162,13 @@ class MediumEx
     {
         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
         int numberOfVowelsCounter = 0;
+
         for(int i = 0; i < myWord.length(); i++)
-        {
-            for(int j = 0; j < vowels.length; j++)
-            {
-                if(myWord.toLowerCase().charAt(i) == vowels[j])
-                {
+            for(char vowel: vowels)
+                if(myWord.toLowerCase().charAt(i) == vowel)
                     numberOfVowelsCounter++;
-                }
-            }
-        }
+
+
         System.out.print("The number of vowels in " + myWord + " is: ");
         return numberOfVowelsCounter;
     }
@@ -184,20 +190,18 @@ class MediumEx
     }
 
 //    9.	Write a function that takes an array of strings and returns a new array that contains the strings in reverse order.
-    public static String[] iReverseAnArray(String[] originalString)
+    public static String[] iReverseAnArray(String[] originalArray)
     {
-        List<String> listArray = new ArrayList<>();
-        for(int i = originalString.length-1; i >= 0; i--)
+        int index = 0;
+        String[] reversedArray = new String[originalArray.length];
+
+        for(int i = originalArray.length-1; i >= 0; i--)
         {
-            listArray.add(originalString[i]);
+            reversedArray[index] = originalArray[i];
+            index++;
         }
 
-        String[] reversedArr = new String[listArray.size()];
-        for(int i = 0; i < reversedArr.length; i++)
-        {
-            reversedArr[i] = listArray.get(i);
-        }
-        return reversedArr;
+        return reversedArray;
     }
     public static void iPrintReversedArray()
     {
@@ -229,6 +233,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-        MediumEx.printCommonArrElements();
+        MediumEx.iPrintReversedArray();
     }
 }
