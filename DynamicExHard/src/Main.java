@@ -73,18 +73,27 @@ class HardEx
 //    5.	Write a function that takes an array of strings and a character as input, and returns a new array that contains only the strings that contain the character.
     public static String[] isCharInMyString(String[] wordList, char letter)
     {
-        List<String> myList = new ArrayList<>();
-        for(String s: wordList)
-            for(int i = 0; i < s.length(); i++)
-                if(s.toLowerCase().charAt(i) == letter | s.toUpperCase().charAt(i) == letter)
-                    myList.add(s);
+        int count = 0;
+       for(String word: wordList)
+           for(int i = 0; i < word.length(); i++)
+               if(word.toLowerCase().charAt(i) == letter || word.toUpperCase().charAt(i) == letter)
+               {
+                   count++;
+                   break;
+               }
 
-        String[] resultingArray = new String[myList.size()];
-        for(int i = 0; i <myList.size(); i++)
-            resultingArray[i] = myList.get(i);
+       String[] wordsResults = new String[count];
+       int index = 0;
+       for(String word: wordList)
+           for (int i = 0; i < word.length(); i++)
+               if(word.toLowerCase().charAt(i) == letter || word.toUpperCase().charAt(i) == letter)
+               {
+                   wordsResults[index] = word;
+                   index++;
+                   break;
+               }
 
-        Arrays.sort(resultingArray);
-        return resultingArray;
+       return wordsResults;
     }
 
 //    6.	Write a function that takes an array of integers and returns the mode (most frequently occurring integer) of the integers in the array.
@@ -113,15 +122,42 @@ class HardEx
         return sortedArray;
     }
 
+//    10.	Write a function that takes two arrays of integers and returns a new array that contains the elements that appear in both arrays in the order that they appear in the first array. If there are duplicates, they should only appear once in the output.
+    public static int[] commonElements(int[] firstArr, int[] secondArr)
+    {
+        int[] results = new int[firstArr.length + secondArr.length];
+        int count = 0;
+
+        for(int num1: firstArr)
+        {
+            boolean isCommon = false;
+            for(int num2: secondArr)
+                if(num1 == num2)
+                {
+                    isCommon = true;
+                    break;
+                }
+            if(isCommon)
+                results[count++] = num1;
+        }
+
+        int[] commonValues = new int[count];
+        for(int i = 0; i < count; i++)
+            commonValues[i] = results[i];
+
+        return commonValues;
+    }
+
 }
 
 public class Main
 {
     public static void main(String[] args)
     {
-        String[] a = {"Tshepo", "Alfred", "Thabang", "Xoli", "Dutchess", "Tee"};
+        int[] a = {1, 2, 3, 4, 5, 6, 10};
+        int[] b = {19, 2, 3, 7, 5, 10};
 
-        for(String n: HardEx.sortedByLength(a))
+        for(int n: HardEx.commonElements(a, b))
             System.out.print(n + " ");
     }
 }
