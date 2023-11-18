@@ -5,50 +5,43 @@ class HardEx
 //    1.	Write a function that takes two arrays of integers and returns a new array that contains the elements that are unique to both arrays.
     public static int[] uniqueElements(int[] firstArray, int[] secondArray)
     {
-        //create hashsets
-        HashSet<Integer> firstSet = new HashSet<>();
-        HashSet<Integer> secondSet = new HashSet<>();
+        int[] results = new int[firstArray.length + secondArray.length];
+        int count = 0;
 
-        //convert arrays to hashsets
-        for(int i = 0; i < firstArray.length; i++)
+
+        for(int num1: firstArray)
         {
-            //add values to our hashset
-            firstSet.add(firstArray[i]);
+            boolean isUnique = true;
+            for(int num2: secondArray)
+                if(num1 == num2)
+                {
+                    isUnique = false;
+                    break;
+                }
+
+            if(isUnique)
+                results[count++] = num1;
         }
 
-        for(int i = 0; i < secondArray.length; i++)
+        for(int num2: secondArray)
         {
-            //add values to our hashset
-            secondSet.add(secondArray[i]);
+            boolean isUnique = true;
+            for(int num1: firstArray)
+                if(num2 == num1)
+                {
+                    isUnique = false;
+                    break;
+                }
+
+            if(isUnique)
+                results[count++] = num2;
         }
 
-        //create a list to store our values
-        List<Integer> listToStoreValues = new ArrayList<>();
+        int[] uniqueResults = new int[count];
+        for(int i = 0; i < count; i++)
+            uniqueResults[i] = results[i];
 
-        //check if values in firstSet are present in secondSet
-        for(int i: firstSet)
-        {
-            if(!secondSet.contains(i))
-            {
-                //add values to our list
-                listToStoreValues.add(i);
-            }
-        }
-
-        for(int j: secondArray)
-        {
-            if(!firstSet.contains(j))
-            {
-                listToStoreValues.add(j);
-            }
-        }
-
-        int[] uniqueElementsInArray = new int[listToStoreValues.size()];
-        for(int i = 0; i < uniqueElementsInArray.length; i++)
-        {
-            uniqueElementsInArray[i] = listToStoreValues.get(i);
-        }
-        return uniqueElementsInArray;
+        return uniqueResults;
     }
 
     //    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
@@ -103,14 +96,21 @@ class HardEx
 //    9.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by length (shortest to longest).
     public static String[] sortedByLength(String[] unsortedArr)
     {
-        String[] sortedArr = unsortedArr;
-        Arrays.sort(sortedArr, new Comparator<String>() {
-            @Override
-            public int compare(String name1, String name2) {
-                return name1.length()-name2.length();
-            }
-        });
-        return sortedArr;
+        String wordStorage = "";
+        for(int i = 0; i < unsortedArr.length - 1; i++)
+            for(int j = 0 + i; j < unsortedArr.length; j++)
+                if(unsortedArr[i].length() >= unsortedArr[j].length())
+                {
+                    wordStorage = unsortedArr[i];
+                    unsortedArr[i] = unsortedArr[j];
+                    unsortedArr[j] = wordStorage;
+                }
+
+        String[] sortedArray = new String[unsortedArr.length];
+        for(int i = 0; i < unsortedArr.length; i++)
+            sortedArray[i] = unsortedArr[i];
+
+        return sortedArray;
     }
 
 }
@@ -119,6 +119,9 @@ public class Main
 {
     public static void main(String[] args)
     {
+        String[] a = {"Tshepo", "Alfred", "Thabang", "Xoli", "Dutchess", "Tee"};
 
+        for(String n: HardEx.sortedByLength(a))
+            System.out.print(n + " ");
     }
 }
