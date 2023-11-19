@@ -47,11 +47,24 @@ class HardEx
     //    2.	Write a function that takes an array of strings and returns a new array that contains the strings in alphabetical order.
     public static String[] iSortStrings(String[] unsortedArray)
     {
-        Arrays.sort(unsortedArray);
+        char[] letters =
+                {
+                'a', 'b', 'c', 'd', 'e', 'f'
+                ,'g', 'h', 'i', 'j', 'k', 'l'
+                ,'m', 'n', 'o', 'p', 'q', 'r'
+                ,'s', 't', 'u', 'v', 'w', 'x'
+                ,'y', 'z'
+                };
+
         String[] sortedArray = new String[unsortedArray.length];
-        sortedArray = unsortedArray;
-
-
+        int index = 0;
+        for(char letter: letters)
+            for(String word: unsortedArray)
+                if(letter == word.toLowerCase().charAt(0))
+                {
+                    sortedArray[index] = word;
+                    index++;
+                }
         return sortedArray;
     }
 
@@ -99,7 +112,18 @@ class HardEx
 //    6.	Write a function that takes an array of integers and returns the mode (most frequently occurring integer) of the integers in the array.
     public static int mostFrequentNum(int[] arrayOfInt)
     {
-    return 0;
+        int count = 0;
+        for(int i = 0; i < arrayOfInt.length-1; i++)
+            for (int j = 0+i; j < arrayOfInt.length; j++)
+                if(arrayOfInt[i] == arrayOfInt[j])
+                    count++;
+
+        int[] repeatedNumbers = new int[count];
+        for(int i = 0; i < arrayOfInt.length-1; i++)
+            for (int j = 0+i; j < arrayOfInt.length; j++)
+                if(arrayOfInt[i] == arrayOfInt[j])
+                    repeatedNumbers[i] = arrayOfInt[i];
+        return 0;
     }
 
 //    9.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by length (shortest to longest).
@@ -154,10 +178,8 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int[] a = {1, 2, 3, 4, 5, 6, 10};
-        int[] b = {19, 2, 3, 7, 5, 10};
-
-        for(int n: HardEx.commonElements(a, b))
+        String[] a = {"Tshepo", "Alfred", "Xoli", "Duchus", "Virginia", "Thabang", "Ben", "Cici", "Lwandle"};
+        for(String n: HardEx.iSortStrings(a))
             System.out.print(n + " ");
     }
 }
