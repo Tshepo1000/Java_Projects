@@ -68,6 +68,13 @@ class HardEx
         return sortedArray;
     }
 
+//    3.	Write a function that takes a string as input and returns the longest palindrome that can be formed from the characters in the string.
+    public static String checkLongestPalindrome(String word)
+    {
+        return "";
+    }
+
+
 //    4.	Write a function that takes an array of integers and a target integer as input, and returns true if there are two integers in the array that add up to the target integer, and false otherwise.
     public static boolean addingNumbers(int[] numArray, int num)
     {
@@ -112,18 +119,25 @@ class HardEx
 //    6.	Write a function that takes an array of integers and returns the mode (most frequently occurring integer) of the integers in the array.
     public static int mostFrequentNum(int[] arrayOfInt)
     {
-        int count = 0;
-        for(int i = 0; i < arrayOfInt.length-1; i++)
-            for (int j = 0+i; j < arrayOfInt.length; j++)
-                if(arrayOfInt[i] == arrayOfInt[j])
+        int mode = 0;
+        int frequency = 0;
+
+        for(int num1: arrayOfInt)
+        {
+            int count = 0;
+            for(int num2: arrayOfInt)
+                if(num1 == num2)
                     count++;
 
-        int[] repeatedNumbers = new int[count];
-        for(int i = 0; i < arrayOfInt.length-1; i++)
-            for (int j = 0+i; j < arrayOfInt.length; j++)
-                if(arrayOfInt[i] == arrayOfInt[j])
-                    repeatedNumbers[i] = arrayOfInt[i];
-        return 0;
+            if(count > frequency)
+            {
+                frequency = count;
+                mode = num1;
+            }
+
+        }
+        System.out.print("The mode is: ");
+        return mode;
     }
 
 //    9.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by length (shortest to longest).
@@ -178,8 +192,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        String[] a = {"Tshepo", "Alfred", "Xoli", "Duchus", "Virginia", "Thabang", "Ben", "Cici", "Lwandle"};
-        for(String n: HardEx.iSortStrings(a))
-            System.out.print(n + " ");
+        int[] numbers = {1, 2, 3, 4, 2, 3, 2, 1, 5, 2, 3, 1};
+        System.out.println(HardEx.mostFrequentNum(numbers));
     }
 }
