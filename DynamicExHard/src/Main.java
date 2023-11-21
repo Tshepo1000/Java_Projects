@@ -140,6 +140,36 @@ class HardEx
         return mode;
     }
 
+//    8.	Write a function that takes an array of integers and returns the kth smallest integer in the array.
+    public static int smallestNumber(int[] numbers)
+    {
+        int[] sortedNumbers = new int[numbers.length];
+        int smallestNum = 0;
+        for(int i = 0; i < numbers.length; i++)
+        {
+            int numToStore = 0;
+            for(int j = 0 + i; j < numbers.length; j++)
+                if(numbers[i] >= numbers[j])
+                {
+                    numToStore = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = numToStore;
+                }
+
+            sortedNumbers[i] = numbers[i];
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("The kth smallest number: ");
+        int num = sc.nextInt();
+
+        sc.close();
+
+        System.out.print("The " + num + " smallest number is: ");
+        return sortedNumbers[num-1];
+    }
+
+
 //    9.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by length (shortest to longest).
     public static String[] sortedByLength(String[] unsortedArr)
     {
@@ -192,7 +222,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int[] numbers = {1, 2, 3, 4, 2, 3, 2, 1, 5, 2, 3, 1};
-        System.out.println(HardEx.mostFrequentNum(numbers));
+        int[] numbers = {17, 34, 89, 6, 78, 3};
+        System.out.println(HardEx.smallestNumber(numbers));
     }
 }
