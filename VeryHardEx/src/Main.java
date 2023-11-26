@@ -172,6 +172,21 @@ class VeryHardEx
         System.out.print("Words sorted by the character " + letter + ": ");
         return results;
     }
+
+//    8.	Write a function that takes an array of integers and a target integer as input, and returns an array of triplets of integers in the array that add up to the target integer.
+    public static int[] addingNumbers(int[] numbers, int number)
+    {
+       int index = 0;
+        int[] tempArray = new int[numbers.length];
+        for(int num: numbers)
+            for(int num1: numbers)
+                for(int num2: numbers)
+                    if(num + num1 + num2 == number)
+                        tempArray = new int[]{num, num1, num2};
+
+        System.out.print("Three numbers that add upto " + number + ": ");
+        return tempArray;
+    }
 }
 
 public class Main
@@ -203,5 +218,11 @@ public class Main
         String[] check = {"Tee", "Tshepo", "Dutchess", "Beenie", "Alfred", "Cici"};
         for(String s: VeryHardEx.sortByChar(check, 'e'))
             System.out.print(s + " ");
+
+        System.out.println();
+
+        //8.
+        for(int nums: VeryHardEx.addingNumbers(a, 8))
+            System.out.print(nums + " ");
     }
 }
