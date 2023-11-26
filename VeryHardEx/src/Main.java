@@ -98,6 +98,27 @@ class VeryHardEx
         return sortedByVowels;
     }
 
+//    4.	Write a function that takes an array of integers and a target integer as input, and returns an array of pairs of integers in the array that add up to the target integer.
+    public static int[][] keyPairs(int[] numbers, int targetNumber)
+    {
+        int count = 0;
+        for(int number: numbers)
+            for(int number1: numbers)
+                    if(number + number1 == targetNumber)
+                        count++;
+
+        int[][] pairs = new int[count][];
+        int index = 0;
+        for(int number: numbers)
+            for(int number1: numbers)
+                    if(number + number1 == targetNumber)
+                        pairs[index++] = new int[]{number, number1};
+
+
+        System.out.print("Number that add up to " + targetNumber + ": ");
+        return pairs;
+    }
+
 }
 
 public class Main
@@ -116,5 +137,12 @@ public class Main
         String[] names = {"Virginia", "Ben", "olerato", "Chad", "Rhythm", "Tshepo"};
         for(String s: VeryHardEx.sortByNumberOfVowels(names))
             System.out.print(s + " ");
+
+        System.out.println();
+
+        //3.
+        for(int[] x: VeryHardEx.keyPairs(a, 6))
+            for(int y: x)
+                System.out.print(y + " ");
     }
 }
