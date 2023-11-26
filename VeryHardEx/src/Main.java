@@ -114,11 +114,64 @@ class VeryHardEx
                     if(number + number1 == targetNumber)
                         pairs[index++] = new int[]{number, number1};
 
-
         System.out.print("Number that add up to " + targetNumber + ": ");
         return pairs;
     }
 
+//    5.	Write a function that takes an array of strings and returns a new array that contains the strings sorted by the number of occurrences of a given character in each string.
+    public static String[] sortByChar(String[] wordList, char letter)
+    {
+        int index = 0;
+        int[] numberOfOccur = new int[wordList.length];
+
+        for(String word: wordList)
+        {
+            int count = 0;
+            for(int i = 0; i < word.length(); i++)
+                if(word.charAt(i) == letter)
+                    count++;
+
+            numberOfOccur[index++] = count;
+        }
+
+        int count1 = 0;
+
+        String[] tempArray = new String[wordList.length];
+        for(String word: wordList)
+        {
+            for(int i = 0; i < word.length(); i++)
+                if(word.charAt(i) == letter)
+                {
+                    tempArray[count1++] = word;
+                    break;
+                }
+        }
+
+        String[] arrayWithChar = new String[count1];
+        for(int i = 0; i < count1; i++)
+            arrayWithChar[i] = tempArray[i];
+
+        String tempWord = "";
+        int tempNum = 0;
+        for(int i = 0; i < arrayWithChar.length; i++)
+            for (int j = 0 + i; j < arrayWithChar.length; j++)
+                if(numberOfOccur[i] >= numberOfOccur[j])
+                {
+                    tempWord = arrayWithChar[i];
+                    tempNum = numberOfOccur[i];
+
+                    arrayWithChar[i] = arrayWithChar[j];
+                    numberOfOccur[i] = numberOfOccur[j];
+
+                    arrayWithChar[j] = tempWord;
+                    numberOfOccur[j] = tempNum;
+                }
+
+        String[] results = arrayWithChar;
+
+        System.out.print("Words sorted by the character " + letter + ": ");
+        return results;
+    }
 }
 
 public class Main
@@ -140,9 +193,15 @@ public class Main
 
         System.out.println();
 
-        //3.
+        //4.
         for(int[] x: VeryHardEx.keyPairs(a, 6))
             for(int y: x)
                 System.out.print(y + " ");
+
+        System.out.println();
+        //5.
+        String[] check = {"Tee", "Tshepo", "Dutchess", "Beenie", "Alfred", "Cici"};
+        for(String s: VeryHardEx.sortByChar(check, 'e'))
+            System.out.print(s + " ");
     }
 }
