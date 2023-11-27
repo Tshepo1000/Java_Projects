@@ -173,6 +173,32 @@ class VeryHardEx
         return results;
     }
 
+//    6.	Write a function that takes an array of integers and returns the second smallest integer in the array.
+    public static int secondSmallestInt(int[] numbers)
+    {
+        //5, 3, 7, 9, 1, 4
+        int min = numbers[0];
+
+        for(int num: numbers)
+            if(min >= num)
+                min = num;
+
+        int[] numbers2 = new int[numbers.length-1];
+        int index = 0;
+
+        for(int num: numbers)
+            if(num > min)
+                numbers2[index++] = num;
+
+        int secondSmallest = numbers2[0];
+        for(int num: numbers2)
+            if(secondSmallest >= num)
+                secondSmallest = num;
+
+        System.out.print("The second smallest number is: ");
+        return secondSmallest;
+    }
+
 //    8.	Write a function that takes an array of integers and a target integer as input, and returns an array of triplets of integers in the array that add up to the target integer.
     public static int[] addingNumbers(int[] numbers, int number)
     {
@@ -220,6 +246,10 @@ public class Main
             System.out.print(s + " ");
 
         System.out.println();
+
+        //6.
+        int[] n = {5, 3, 7, 2, 9, 1, 4};
+        System.out.println(VeryHardEx.secondSmallestInt(n));
 
         //8.
         for(int nums: VeryHardEx.addingNumbers(a, 8))
