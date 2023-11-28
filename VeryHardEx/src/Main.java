@@ -213,6 +213,32 @@ class VeryHardEx
         System.out.print("Three numbers that add upto " + number + ": ");
         return tempArray;
     }
+
+//    10.	Write a function that takes an array of integers and returns a new array that contains the integers sorted by the number of occurrences of each integer in the original array.
+    public static int[] sortByOccurrences(int[] numbers)
+    {
+        int count = 0;
+        for(int num: numbers)
+        {
+            for(int num1: numbers)
+                if(num == num1)
+                    count++;
+        }
+
+//        {1, 2, 4, 6, 1, 4, 1, 2, 3, 7};
+        int[] sortedByOccur = new int[count];
+        int index = 0;
+        for(int num: numbers)
+        {
+            for(int num1: numbers)
+                if(num == num1)
+                    sortedByOccur[index++] = num;
+        }
+
+
+        System.out.print("Numbers sorted by occurrence: ");
+        return sortedByOccur;
+    }
 }
 
 public class Main
@@ -254,5 +280,11 @@ public class Main
         //8.
         for(int nums: VeryHardEx.addingNumbers(a, 8))
             System.out.print(nums + " ");
+
+        System.out.println();
+        //10.
+        int[] unsorted = {1, 2, 4, 6, 1, 4, 1, 2, 3, 7};
+        for(int q: VeryHardEx.sortByOccurrences(unsorted))
+            System.out.print(q + " ");
     }
 }
